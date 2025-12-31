@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGear - Electronics Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Auth Modals -->
+    <div class="auth-modal" id="login-modal">
+        <div class="auth-content">
+            <span class="close-auth">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p class="auth-switch">Don't have an account? <a href="#" id="switch-to-signup">Sign Up</a></p>
+        </div>
+    </div>
+
+    <div class="auth-modal" id="signup-modal">
+        <div class="auth-content">
+            <span class="close-auth">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <input type="password" id="signup-confirm" placeholder="Confirm Password" required>
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <h1>Tech<span>Gear</span></h1>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- User/Auth Controls -->
+            <div class="user-controls">
+                <div class="cart-icon" id="cart-toggle">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </div>
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="btn-outline" id="login-btn">Login</button>
+                    <button class="btn-primary" id="signup-btn">Sign Up</button>
+                </div>
+                <div class="user-profile" id="user-profile" style="display: none;">
+                    <span id="user-name"></span>
+                    <button class="btn-outline" id="logout-btn">Logout</button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-toggle" id="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="mobile-auth" id="mobile-auth-buttons">
+                <button class="btn-outline" id="mobile-login-btn">Login</button>
+                <button class="btn-primary" id="mobile-signup-btn">Sign Up</button>
+            </li>
+            <li class="mobile-profile" id="mobile-user-profile" style="display: none;">
+                <span>Welcome, <span id="mobile-user-name"></span></span>
+                <button class="btn-outline" id="mobile-logout-btn">Logout</button>
+            </li>
+        </ul>
+    </div>
+
+   
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h2>Welcome to TechGear</h2>
+            <p>Your ultimate destination for cutting-edge electronics and gadgets</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToProducts()">Shop Now</button>
+                <button class="btn-outline" onclick="openAboutSection()">Learn More</button>
+            </div>
+        </section>
+
+        <!-- Product Filter/Search -->
+        <div class="filter-section">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="laptop">Laptops</button>
+                <button class="filter-btn" data-category="phone">Phones</button>
+                <button class="filter-btn" data-category="accessory">Accessories</button>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <section class="products-section" id="products">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="about-section" id="about">
+            <h2 class="section-title">About TechGear</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>Founded in 2023, TechGear has quickly become a leading destination for technology enthusiasts. We're passionate about bringing you the latest and greatest in electronics, from smartphones to laptops and everything in between.</p>
+                    <p>Our mission is to make cutting-edge technology accessible to everyone while providing exceptional customer service and expert advice.</p>
+                </div>
+                <div class="team-section">
+                    <h3>Meet Our Leadership Team</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="images/creater1.jpg" alt="Sarah Johnson - CEO">
+                            </div>
+                            <h4>Shafqat Ullah</h4>
+                            <p>CEO & Founder</p>
+                            <p class="team-desc">With 15+ years in tech industry</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="images/creater2.jpg" alt="Michael Chen - Manager">
+                            </div>
+                            <h4>Muhammad Saqib</h4>
+                            <p>Operations Manager</p>
+                            <p class="team-desc">Expert in supply chain & logistics</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="images/creater3.jpg" alt="David Park - CTO">
+                            </div>
+                            <h4>Muhammad Huzaifa Khan</h4>
+                            <p>Chief Technology Officer</p>
+                            <p class="team-desc"> Mern Stack Developer </p>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-photo">
+                                <img src="images/creater4.jpg" alt="Azam khan - tech">
+                            </div>
+                            <h4>Azam Khan</h4>
+                            <p>Tech Specialist</p>
+                            <p class="team-desc"> Certified Electronics Expert, Product Curator </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section class="cart-section" id="cart">
+            <div class="cart-header">
+                <h2 class="section-title">Your Shopping Cart</h2>
+                <button class="btn-secondary" id="clear-cart">Clear Cart</button>
+            </div>
+            
+            <div class="cart-container">
+                <!-- Cart Items will be dynamically added here -->
+                <div class="empty-cart" id="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Add some products to get started!</p>
+                </div>
+                
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be added here by JavaScript -->
+                </div>
+                
+                <!-- Cart Summary -->
+                <div class="cart-summary" id="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shipping">$5.99</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">$5.99</span>
+                    </div>
+                    <button class="btn-primary checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Gulgasht Colony, Multan, Pakistan</p>
+                    <p><i class="fas fa-phone"></i> +92 328 6795159</p>
+                    <p><i class="fas fa-envelope"></i> support@techgear.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM | Sat: 10AM-4PM</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="4" required></textarea>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechGear</h3>
+                    <p>Your one-stop shop for all electronics and gadgets. Quality products at affordable prices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for updates and exclusive offers</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TechGear. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span id="toast-message">Product added to cart!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
